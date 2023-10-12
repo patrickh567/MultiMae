@@ -86,9 +86,8 @@ class PatchedInputAdapter(nn.Module):
 
         # Image -> tokens projection
         self.proj = nn.Conv2d(
-            in_channels=self.num_channels, out_channels=self.dim_tokens,
-            kernel_size=(self.P_H, self.P_W), stride=(self.P_H, self.P_W)
-        )
+            in_channels=self.num_channels, out_channels=self.dim_tokens, kernel_size=(self.P_H, self.P_W), stride=(self.P_H, self.P_W), bias=False
+            )
 
     @torch.jit.ignore
     def no_weight_decay(self):
@@ -200,12 +199,12 @@ class SemSegInputAdapter(nn.Module):
                 nn.Upsample(scale_factor=(1 / self.P_H, 1 / self.P_W),
                             mode='bilinear'),  # Actually a downsample operation
                 nn.Conv2d(in_channels=self.dim_class_emb, out_channels=self.dim_tokens,
-                          kernel_size=1, stride=1),
+                          kernel_size=1, stride=1, bias=False),
             )
         else:
             self.proj = nn.Conv2d(
                 in_channels=self.dim_class_emb, out_channels=self.dim_tokens,
-                kernel_size=(self.P_H, self.P_W), stride=(self.P_H, self.P_W)
+                kernel_size=(self.P_H, self.P_W), stride=(self.P_H, self.P_W), bias=False
             )
 
     @torch.jit.ignore

@@ -47,8 +47,8 @@ find_unused_params: False
 # Wandb and logging
 log_wandb: False # Set to True to log to Weights & Biases
 wandb_project: 'multimae-finetune-semseg'
-wandb_entity: null # Change if needed
+wandb_entity: 'patrickhowe22' # Change if needed
 wandb_run_name: 'ft_nyu_200e_multimae-b_rgb-depth'
-log_images_wandb: True
+log_images_wandb: False
 log_images_freq: 20
 output_dir: 'output/finetune/semseg/nyu/ft_nyu_200e_multimae-b_rgb-depth'

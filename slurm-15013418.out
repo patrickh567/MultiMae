@@ -1,0 +1,863 @@
+| distributed init (rank 0): env://, gpu 0
+Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x145f78267e90>
+Key input_adapters.rgb.pos_emb: Position interpolate from 14x14 to 16x16
+_IncompatibleKeys(missing_keys=['output_adapters.depth.scratch.layer1_rn.weight', 'output_adapters.depth.scratch.layer2_rn.weight', 'output_adapters.depth.scratch.layer3_rn.weight', 'output_adapters.depth.scratch.layer4_rn.weight', 'output_adapters.depth.scratch.layer_rn.0.weight', 'output_adapters.depth.scratch.layer_rn.1.weight', 'output_adapters.depth.scratch.layer_rn.2.weight', 'output_adapters.depth.scratch.layer_rn.3.weight', 'output_adapters.depth.scratch.refinenet1.out_conv.weight', 'output_adapters.depth.scratch.refinenet1.out_conv.bias', 'output_adapters.depth.scratch.refinenet1.resConfUnit1.conv1.weight', 'output_adapters.depth.scratch.refinenet1.resConfUnit1.conv1.bias', 'output_adapters.depth.scratch.refinenet1.resConfUnit1.conv2.weight', 'output_adapters.depth.scratch.refinenet1.resConfUnit1.conv2.bias', 'output_adapters.depth.scratch.refinenet1.resConfUnit2.conv1.weight', 'output_adapters.depth.scratch.refinenet1.resConfUnit2.conv1.bias', 'output_adapters.depth.scratch.refinenet1.resConfUnit2.conv2.weight', 'output_adapters.depth.scratch.refinenet1.resConfUnit2.conv2.bias', 'output_adapters.depth.scratch.refinenet2.out_conv.weight', 'output_adapters.depth.scratch.refinenet2.out_conv.bias', 'output_adapters.depth.scratch.refinenet2.resConfUnit1.conv1.weight', 'output_adapters.depth.scratch.refinenet2.resConfUnit1.conv1.bias', 'output_adapters.depth.scratch.refinenet2.resConfUnit1.conv2.weight', 'output_adapters.depth.scratch.refinenet2.resConfUnit1.conv2.bias', 'output_adapters.depth.scratch.refinenet2.resConfUnit2.conv1.weight', 'output_adapters.depth.scratch.refinenet2.resConfUnit2.conv1.bias', 'output_adapters.depth.scratch.refinenet2.resConfUnit2.conv2.weight', 'output_adapters.depth.scratch.refinenet2.resConfUnit2.conv2.bias', 'output_adapters.depth.scratch.refinenet3.out_conv.weight', 'output_adapters.depth.scratch.refinenet3.out_conv.bias', 'output_adapters.depth.scratch.refinenet3.resConfUnit1.conv1.weight', 'output_adapters.depth.scratch.refinenet3.resConfUnit1.conv1.bias', 'output_adapters.depth.scratch.refinenet3.resConfUnit1.conv2.weight', 'output_adapters.depth.scratch.refinenet3.resConfUnit1.conv2.bias', 'output_adapters.depth.scratch.refinenet3.resConfUnit2.conv1.weight', 'output_adapters.depth.scratch.refinenet3.resConfUnit2.conv1.bias', 'output_adapters.depth.scratch.refinenet3.resConfUnit2.conv2.weight', 'output_adapters.depth.scratch.refinenet3.resConfUnit2.conv2.bias', 'output_adapters.depth.scratch.refinenet4.out_conv.weight', 'output_adapters.depth.scratch.refinenet4.out_conv.bias', 'output_adapters.depth.scratch.refinenet4.resConfUnit1.conv1.weight', 'output_adapters.depth.scratch.refinenet4.resConfUnit1.conv1.bias', 'output_adapters.depth.scratch.refinenet4.resConfUnit1.conv2.weight', 'output_adapters.depth.scratch.refinenet4.resConfUnit1.conv2.bias', 'output_adapters.depth.scratch.refinenet4.resConfUnit2.conv1.weight', 'output_adapters.depth.scratch.refinenet4.resConfUnit2.conv1.bias', 'output_adapters.depth.scratch.refinenet4.resConfUnit2.conv2.weight', 'output_adapters.depth.scratch.refinenet4.resConfUnit2.conv2.bias', 'output_adapters.depth.head.0.weight', 'output_adapters.depth.head.0.bias', 'output_adapters.depth.head.2.weight', 'output_adapters.depth.head.2.bias', 'output_adapters.depth.head.4.weight', 'output_adapters.depth.head.4.bias', 'output_adapters.depth.act_1_postprocess.0.weight', 'output_adapters.depth.act_1_postprocess.0.bias', 'output_adapters.depth.act_1_postprocess.1.weight', 'output_adapters.depth.act_1_postprocess.1.bias', 'output_adapters.depth.act_2_postprocess.0.weight', 'output_adapters.depth.act_2_postprocess.0.bias', 'output_adapters.depth.act_2_postprocess.1.weight', 'output_adapters.depth.act_2_postprocess.1.bias', 'output_adapters.depth.act_3_postprocess.0.weight', 'output_adapters.depth.act_3_postprocess.0.bias', 'output_adapters.depth.act_4_postprocess.0.weight', 'output_adapters.depth.act_4_postprocess.0.bias', 'output_adapters.depth.act_4_postprocess.1.weight', 'output_adapters.depth.act_4_postprocess.1.bias', 'output_adapters.depth.act_postprocess.0.0.weight', 'output_adapters.depth.act_postprocess.0.0.bias', 'output_adapters.depth.act_postprocess.0.1.weight', 'output_adapters.depth.act_postprocess.0.1.bias', 'output_adapters.depth.act_postprocess.1.0.weight', 'output_adapters.depth.act_postprocess.1.0.bias', 'output_adapters.depth.act_postprocess.1.1.weight', 'output_adapters.depth.act_postprocess.1.1.bias', 'output_adapters.depth.act_postprocess.2.0.weight', 'output_adapters.depth.act_postprocess.2.0.bias', 'output_adapters.depth.act_postprocess.3.0.weight', 'output_adapters.depth.act_postprocess.3.0.bias', 'output_adapters.depth.act_postprocess.3.1.weight', 'output_adapters.depth.act_postprocess.3.1.bias'], unexpected_keys=[])
+Model = MultiViT(
+  (input_adapters): ModuleDict(
+    (rgb): PatchedInputAdapter(
+      (proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16), bias=False)
+    )
+  )
+  (output_adapters): ModuleDict(
+    (depth): DPTOutputAdapter(
+      (scratch): Module(
+        (layer1_rn): Conv2d(96, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (layer2_rn): Conv2d(192, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (layer3_rn): Conv2d(384, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (layer4_rn): Conv2d(768, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (layer_rn): ModuleList(
+          (0): Conv2d(96, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): Conv2d(192, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (2): Conv2d(384, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (3): Conv2d(768, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        )
+        (refinenet1): FeatureFusionBlock_custom(
+          (out_conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+          (resConfUnit1): ResidualConvUnit_custom(
+            (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (activation): ReLU()
+            (skip_add): FloatFunctional(
+              (activation_post_process): Identity()
+            )
+          )
+          (resConfUnit2): ResidualConvUnit_custom(
+            (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (activation): ReLU()
+            (skip_add): FloatFunctional(
+              (activation_post_process): Identity()
+            )
+          )
+          (skip_add): FloatFunctional(
+            (activation_post_process): Identity()
+          )
+        )
+        (refinenet2): FeatureFusionBlock_custom(
+          (out_conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+          (resConfUnit1): ResidualConvUnit_custom(
+            (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (activation): ReLU()
+            (skip_add): FloatFunctional(
+              (activation_post_process): Identity()
+            )
+          )
+          (resConfUnit2): ResidualConvUnit_custom(
+            (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (activation): ReLU()
+            (skip_add): FloatFunctional(
+              (activation_post_process): Identity()
+            )
+          )
+          (skip_add): FloatFunctional(
+            (activation_post_process): Identity()
+          )
+        )
+        (refinenet3): FeatureFusionBlock_custom(
+          (out_conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+          (resConfUnit1): ResidualConvUnit_custom(
+            (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (activation): ReLU()
+            (skip_add): FloatFunctional(
+              (activation_post_process): Identity()
+            )
+          )
+          (resConfUnit2): ResidualConvUnit_custom(
+            (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (activation): ReLU()
+            (skip_add): FloatFunctional(
+              (activation_post_process): Identity()
+            )
+          )
+          (skip_add): FloatFunctional(
+            (activation_post_process): Identity()
+          )
+        )
+        (refinenet4): FeatureFusionBlock_custom(
+          (out_conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+          (resConfUnit1): ResidualConvUnit_custom(
+            (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (activation): ReLU()
+            (skip_add): FloatFunctional(
+              (activation_post_process): Identity()
+            )
+          )
+          (resConfUnit2): ResidualConvUnit_custom(
+            (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (activation): ReLU()
+            (skip_add): FloatFunctional(
+              (activation_post_process): Identity()
+            )
+          )
+          (skip_add): FloatFunctional(
+            (activation_post_process): Identity()
+          )
+        )
+      )
+      (head): Sequential(
+        (0): Conv2d(256, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): Interpolate()
+        (2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (3): ReLU(inplace=True)
+        (4): Conv2d(32, 1, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (act_1_postprocess): Sequential(
+        (0): Conv2d(768, 96, kernel_size=(1, 1), stride=(1, 1))
+        (1): ConvTranspose2d(96, 96, kernel_size=(4, 4), stride=(4, 4))
+      )
+      (act_2_postprocess): Sequential(
+        (0): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        (1): ConvTranspose2d(192, 192, kernel_size=(2, 2), stride=(2, 2))
+      )
+      (act_3_postprocess): Sequential(
+        (0): Conv2d(768, 384, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (act_4_postprocess): Sequential(
+        (0): Conv2d(768, 768, kernel_size=(1, 1), stride=(1, 1))
+        (1): Conv2d(768, 768, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+      )
+      (act_postprocess): ModuleList(
+        (0): Sequential(
+          (0): Conv2d(768, 96, kernel_size=(1, 1), stride=(1, 1))
+          (1): ConvTranspose2d(96, 96, kernel_size=(4, 4), stride=(4, 4))
+        )
+        (1): Sequential(
+          (0): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+          (1): ConvTranspose2d(192, 192, kernel_size=(2, 2), stride=(2, 2))
+        )
+        (2): Sequential(
+          (0): Conv2d(768, 384, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (3): Sequential(
+          (0): Conv2d(768, 768, kernel_size=(1, 1), stride=(1, 1))
+          (1): Conv2d(768, 768, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        )
+      )
+    )
+  )
+  (encoder): Sequential(
+    (0): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (1): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (2): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (3): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (4): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (5): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (6): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (7): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (8): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (9): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (10): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (11): Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+)
+number of params: 105.710977 M
+LR = 0.00010000
+Batch size = 64
+Number of training steps = 12
+Number of training examples per epoch = 768
+Assigned values = [0.023757264018058777, 0.03167635202407837, 0.04223513603210449, 0.056313514709472656, 0.07508468627929688, 0.1001129150390625, 0.13348388671875, 0.177978515625, 0.2373046875, 0.31640625, 0.421875, 0.5625, 0.75, 1.0]
+Skip weight decay list:  {'input_adapters.rgb.pos_emb', 'global_tokens'}
+Param groups = {
+  "layer_0_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "global_tokens"
+    ],
+    "lr_scale": 0.023757264018058777
+  },
+  "layer_0_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "input_adapters.rgb.proj.weight"
+    ],
+    "lr_scale": 0.023757264018058777
+  },
+  "layer_13_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "output_adapters.depth.scratch.layer1_rn.weight",
+      "output_adapters.depth.scratch.layer2_rn.weight",
+      "output_adapters.depth.scratch.layer3_rn.weight",
+      "output_adapters.depth.scratch.layer4_rn.weight",
+      "output_adapters.depth.scratch.refinenet1.out_conv.weight",
+      "output_adapters.depth.scratch.refinenet1.resConfUnit1.conv1.weight",
+      "output_adapters.depth.scratch.refinenet1.resConfUnit1.conv2.weight",
+      "output_adapters.depth.scratch.refinenet1.resConfUnit2.conv1.weight",
+      "output_adapters.depth.scratch.refinenet1.resConfUnit2.conv2.weight",
+      "output_adapters.depth.scratch.refinenet2.out_conv.weight",
+      "output_adapters.depth.scratch.refinenet2.resConfUnit1.conv1.weight",
+      "output_adapters.depth.scratch.refinenet2.resConfUnit1.conv2.weight",
+      "output_adapters.depth.scratch.refinenet2.resConfUnit2.conv1.weight",
+      "output_adapters.depth.scratch.refinenet2.resConfUnit2.conv2.weight",
+      "output_adapters.depth.scratch.refinenet3.out_conv.weight",
+      "output_adapters.depth.scratch.refinenet3.resConfUnit1.conv1.weight",
+      "output_adapters.depth.scratch.refinenet3.resConfUnit1.conv2.weight",
+      "output_adapters.depth.scratch.refinenet3.resConfUnit2.conv1.weight",
+      "output_adapters.depth.scratch.refinenet3.resConfUnit2.conv2.weight",
+      "output_adapters.depth.scratch.refinenet4.out_conv.weight",
+      "output_adapters.depth.scratch.refinenet4.resConfUnit1.conv1.weight",
+      "output_adapters.depth.scratch.refinenet4.resConfUnit1.conv2.weight",
+      "output_adapters.depth.scratch.refinenet4.resConfUnit2.conv1.weight",
+      "output_adapters.depth.scratch.refinenet4.resConfUnit2.conv2.weight",
+      "output_adapters.depth.head.0.weight",
+      "output_adapters.depth.head.2.weight",
+      "output_adapters.depth.head.4.weight",
+      "output_adapters.depth.act_1_postprocess.0.weight",
+      "output_adapters.depth.act_1_postprocess.1.weight",
+      "output_adapters.depth.act_2_postprocess.0.weight",
+      "output_adapters.depth.act_2_postprocess.1.weight",
+      "output_adapters.depth.act_3_postprocess.0.weight",
+      "output_adapters.depth.act_4_postprocess.0.weight",
+      "output_adapters.depth.act_4_postprocess.1.weight"
+    ],
+    "lr_scale": 1.0
+  },
+  "layer_13_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "output_adapters.depth.scratch.refinenet1.out_conv.bias",
+      "output_adapters.depth.scratch.refinenet1.resConfUnit1.conv1.bias",
+      "output_adapters.depth.scratch.refinenet1.resConfUnit1.conv2.bias",
+      "output_adapters.depth.scratch.refinenet1.resConfUnit2.conv1.bias",
+      "output_adapters.depth.scratch.refinenet1.resConfUnit2.conv2.bias",
+      "output_adapters.depth.scratch.refinenet2.out_conv.bias",
+      "output_adapters.depth.scratch.refinenet2.resConfUnit1.conv1.bias",
+      "output_adapters.depth.scratch.refinenet2.resConfUnit1.conv2.bias",
+      "output_adapters.depth.scratch.refinenet2.resConfUnit2.conv1.bias",
+      "output_adapters.depth.scratch.refinenet2.resConfUnit2.conv2.bias",
+      "output_adapters.depth.scratch.refinenet3.out_conv.bias",
+      "output_adapters.depth.scratch.refinenet3.resConfUnit1.conv1.bias",
+      "output_adapters.depth.scratch.refinenet3.resConfUnit1.conv2.bias",
+      "output_adapters.depth.scratch.refinenet3.resConfUnit2.conv1.bias",
+      "output_adapters.depth.scratch.refinenet3.resConfUnit2.conv2.bias",
+      "output_adapters.depth.scratch.refinenet4.out_conv.bias",
+      "output_adapters.depth.scratch.refinenet4.resConfUnit1.conv1.bias",
+      "output_adapters.depth.scratch.refinenet4.resConfUnit1.conv2.bias",
+      "output_adapters.depth.scratch.refinenet4.resConfUnit2.conv1.bias",
+      "output_adapters.depth.scratch.refinenet4.resConfUnit2.conv2.bias",
+      "output_adapters.depth.head.0.bias",
+      "output_adapters.depth.head.2.bias",
+      "output_adapters.depth.head.4.bias",
+      "output_adapters.depth.act_1_postprocess.0.bias",
+      "output_adapters.depth.act_1_postprocess.1.bias",
+      "output_adapters.depth.act_2_postprocess.0.bias",
+      "output_adapters.depth.act_2_postprocess.1.bias",
+      "output_adapters.depth.act_3_postprocess.0.bias",
+      "output_adapters.depth.act_4_postprocess.0.bias",
+      "output_adapters.depth.act_4_postprocess.1.bias"
+    ],
+    "lr_scale": 1.0
+  },
+  "layer_1_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.0.norm1.weight",
+      "encoder.0.norm1.bias",
+      "encoder.0.attn.qkv.bias",
+      "encoder.0.attn.proj.bias",
+      "encoder.0.norm2.weight",
+      "encoder.0.norm2.bias",
+      "encoder.0.mlp.fc1.bias",
+      "encoder.0.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.03167635202407837
+  },
+  "layer_1_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.0.attn.qkv.weight",
+      "encoder.0.attn.proj.weight",
+      "encoder.0.mlp.fc1.weight",
+      "encoder.0.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.03167635202407837
+  },
+  "layer_2_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.1.norm1.weight",
+      "encoder.1.norm1.bias",
+      "encoder.1.attn.qkv.bias",
+      "encoder.1.attn.proj.bias",
+      "encoder.1.norm2.weight",
+      "encoder.1.norm2.bias",
+      "encoder.1.mlp.fc1.bias",
+      "encoder.1.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.04223513603210449
+  },
+  "layer_2_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.1.attn.qkv.weight",
+      "encoder.1.attn.proj.weight",
+      "encoder.1.mlp.fc1.weight",
+      "encoder.1.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.04223513603210449
+  },
+  "layer_3_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.2.norm1.weight",
+      "encoder.2.norm1.bias",
+      "encoder.2.attn.qkv.bias",
+      "encoder.2.attn.proj.bias",
+      "encoder.2.norm2.weight",
+      "encoder.2.norm2.bias",
+      "encoder.2.mlp.fc1.bias",
+      "encoder.2.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.056313514709472656
+  },
+  "layer_3_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.2.attn.qkv.weight",
+      "encoder.2.attn.proj.weight",
+      "encoder.2.mlp.fc1.weight",
+      "encoder.2.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.056313514709472656
+  },
+  "layer_4_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.3.norm1.weight",
+      "encoder.3.norm1.bias",
+      "encoder.3.attn.qkv.bias",
+      "encoder.3.attn.proj.bias",
+      "encoder.3.norm2.weight",
+      "encoder.3.norm2.bias",
+      "encoder.3.mlp.fc1.bias",
+      "encoder.3.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.07508468627929688
+  },
+  "layer_4_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.3.attn.qkv.weight",
+      "encoder.3.attn.proj.weight",
+      "encoder.3.mlp.fc1.weight",
+      "encoder.3.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.07508468627929688
+  },
+  "layer_5_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.4.norm1.weight",
+      "encoder.4.norm1.bias",
+      "encoder.4.attn.qkv.bias",
+      "encoder.4.attn.proj.bias",
+      "encoder.4.norm2.weight",
+      "encoder.4.norm2.bias",
+      "encoder.4.mlp.fc1.bias",
+      "encoder.4.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.1001129150390625
+  },
+  "layer_5_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.4.attn.qkv.weight",
+      "encoder.4.attn.proj.weight",
+      "encoder.4.mlp.fc1.weight",
+      "encoder.4.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.1001129150390625
+  },
+  "layer_6_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.5.norm1.weight",
+      "encoder.5.norm1.bias",
+      "encoder.5.attn.qkv.bias",
+      "encoder.5.attn.proj.bias",
+      "encoder.5.norm2.weight",
+      "encoder.5.norm2.bias",
+      "encoder.5.mlp.fc1.bias",
+      "encoder.5.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.13348388671875
+  },
+  "layer_6_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.5.attn.qkv.weight",
+      "encoder.5.attn.proj.weight",
+      "encoder.5.mlp.fc1.weight",
+      "encoder.5.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.13348388671875
+  },
+  "layer_7_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.6.norm1.weight",
+      "encoder.6.norm1.bias",
+      "encoder.6.attn.qkv.bias",
+      "encoder.6.attn.proj.bias",
+      "encoder.6.norm2.weight",
+      "encoder.6.norm2.bias",
+      "encoder.6.mlp.fc1.bias",
+      "encoder.6.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.177978515625
+  },
+  "layer_7_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.6.attn.qkv.weight",
+      "encoder.6.attn.proj.weight",
+      "encoder.6.mlp.fc1.weight",
+      "encoder.6.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.177978515625
+  },
+  "layer_8_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.7.norm1.weight",
+      "encoder.7.norm1.bias",
+      "encoder.7.attn.qkv.bias",
+      "encoder.7.attn.proj.bias",
+      "encoder.7.norm2.weight",
+      "encoder.7.norm2.bias",
+      "encoder.7.mlp.fc1.bias",
+      "encoder.7.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.2373046875
+  },
+  "layer_8_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.7.attn.qkv.weight",
+      "encoder.7.attn.proj.weight",
+      "encoder.7.mlp.fc1.weight",
+      "encoder.7.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.2373046875
+  },
+  "layer_9_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.8.norm1.weight",
+      "encoder.8.norm1.bias",
+      "encoder.8.attn.qkv.bias",
+      "encoder.8.attn.proj.bias",
+      "encoder.8.norm2.weight",
+      "encoder.8.norm2.bias",
+      "encoder.8.mlp.fc1.bias",
+      "encoder.8.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.31640625
+  },
+  "layer_9_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.8.attn.qkv.weight",
+      "encoder.8.attn.proj.weight",
+      "encoder.8.mlp.fc1.weight",
+      "encoder.8.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.31640625
+  },
+  "layer_10_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.9.norm1.weight",
+      "encoder.9.norm1.bias",
+      "encoder.9.attn.qkv.bias",
+      "encoder.9.attn.proj.bias",
+      "encoder.9.norm2.weight",
+      "encoder.9.norm2.bias",
+      "encoder.9.mlp.fc1.bias",
+      "encoder.9.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.421875
+  },
+  "layer_10_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.9.attn.qkv.weight",
+      "encoder.9.attn.proj.weight",
+      "encoder.9.mlp.fc1.weight",
+      "encoder.9.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.421875
+  },
+  "layer_11_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.10.norm1.weight",
+      "encoder.10.norm1.bias",
+      "encoder.10.attn.qkv.bias",
+      "encoder.10.attn.proj.bias",
+      "encoder.10.norm2.weight",
+      "encoder.10.norm2.bias",
+      "encoder.10.mlp.fc1.bias",
+      "encoder.10.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.5625
+  },
+  "layer_11_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.10.attn.qkv.weight",
+      "encoder.10.attn.proj.weight",
+      "encoder.10.mlp.fc1.weight",
+      "encoder.10.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.5625
+  },
+  "layer_12_no_decay": {
+    "weight_decay": 0.0,
+    "params": [
+      "encoder.11.norm1.weight",
+      "encoder.11.norm1.bias",
+      "encoder.11.attn.qkv.bias",
+      "encoder.11.attn.proj.bias",
+      "encoder.11.norm2.weight",
+      "encoder.11.norm2.bias",
+      "encoder.11.mlp.fc1.bias",
+      "encoder.11.mlp.fc2.bias"
+    ],
+    "lr_scale": 0.75
+  },
+  "layer_12_decay": {
+    "weight_decay": 0.0001,
+    "params": [
+      "encoder.11.attn.qkv.weight",
+      "encoder.11.attn.proj.weight",
+      "encoder.11.mlp.fc1.weight",
+      "encoder.11.mlp.fc2.weight"
+    ],
+    "lr_scale": 0.75
+  }
+}
+optimizer settings: {'lr': 0.0001, 'weight_decay': 0.0, 'eps': 1e-08, 'betas': [0.9, 0.999]}
+Use step level LR & WD scheduler!
+Set warmup steps = 1200
+Set warmup steps = 0
+Max WD = 0.0001000, Min WD = 0.0001000
+Auto resume checkpoint: 
+Start training for 2000 epochs
+Traceback (most recent call last):
+  File "/mmfs1/gscratch/krishna/patrickh/MultiMAE/run_finetuning_depth.py", line 883, in <module>
+    main(opts)
+  File "/mmfs1/gscratch/krishna/patrickh/MultiMAE/run_finetuning_depth.py", line 573, in main
+    train_stats = train_one_epoch(
+                  ^^^^^^^^^^^^^^^^
+  File "/mmfs1/gscratch/krishna/patrickh/MultiMAE/run_finetuning_depth.py", line 646, in train_one_epoch
+    for step, x in enumerate(metric_logger.log_every(data_loader, print_freq, header)):
+  File "/mmfs1/gscratch/krishna/patrickh/MultiMAE/utils/logger.py", line 144, in log_every
+    for obj in iterable:
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 630, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 1345, in _next_data
+    return self._process_data(data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 1371, in _process_data
+    data.reraise()
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/_utils.py", line 694, in reraise
+    raise exception
+cv2.error: Caught error in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File "/mmfs1/gscratch/krishna/patrickh/MultiMAE/utils/dataset_folder.py", line 307, in __getitem__
+    sample_dict = self.transform(sample_dict)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mmfs1/gscratch/krishna/patrickh/MultiMAE/utils/dataset_regression.py", line 116, in __call__
+    task_dict = self.transform(**task_dict)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/albumentations/core/composition.py", line 210, in __call__
+    data = t(**data)
+           ^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/albumentations/core/transforms_interface.py", line 118, in __call__
+    return self.apply_with_params(params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/albumentations/core/transforms_interface.py", line 131, in apply_with_params
+    res[key] = target_function(arg, **dict(params, **target_dependencies))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/albumentations/core/transforms_interface.py", line 263, in apply_to_mask
+    return self.apply(img, **{k: cv2.INTER_NEAREST if k == "interpolation" else v for k, v in params.items()})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/albumentations/augmentations/geometric/resize.py", line 140, in apply
+    return F.smallest_max_size(img, max_size=max_size, interpolation=interpolation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/albumentations/augmentations/utils.py", line 122, in wrapped_function
+    result = func(img, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/albumentations/augmentations/geometric/functional.py", line 444, in smallest_max_size
+    return _func_max_size(img, max_size, interpolation, min)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/albumentations/augmentations/geometric/functional.py", line 433, in _func_max_size
+    img = resize(img, height=new_height, width=new_width, interpolation=interpolation)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/albumentations/augmentations/utils.py", line 122, in wrapped_function
+    result = func(img, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/albumentations/augmentations/geometric/functional.py", line 392, in resize
+    return resize_fn(img)
+           ^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/albumentations/augmentations/utils.py", line 208, in __process_fn
+    img = process_fn(img, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.7.0) :-1: error: (-5:Bad argument) in function 'resize'
+> Overload resolution failed:
+>  - src data type = 0 is not supported
+>  - Expected Ptr<cv::UMat> for argument 'src'
+
+
+[2023-10-11 19:01:12,091] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 23076) of binary: /gscratch/krishna/patrickh/mae-py311/bin/python
+Traceback (most recent call last):
+  File "/gscratch/krishna/patrickh/mae-py311/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gscratch/krishna/patrickh/mae-py311/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+run_finetuning_depth.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-10-11_19:01:12
+  host      : g3054.hyak.local
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 23076)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

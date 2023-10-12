@@ -65,6 +65,8 @@ if __name__ == '__main__':
     
     print(f'Loading weights at {args.multimae_ckpt_path}')
     ckpt = torch.load(args.multimae_ckpt_path)
+    print(ckpt.keys())
+    exit()
     print('Converting from MultiMAE weights to ViT weights...')
     ckpt['model'] = multimae_to_vit(ckpt['model'])
     torch.save(ckpt, args.vit_ckpt_path)

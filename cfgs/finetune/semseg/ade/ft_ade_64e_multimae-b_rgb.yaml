@@ -43,10 +43,10 @@ eval_freq: 1
 find_unused_params: False
 
 # Wandb and logging
-log_wandb: False # Set to True to log to Weights & Biases
+log_wandb: True # Set to True to log to Weights & Biases
 wandb_project: 'multimae-finetune-semseg'
-wandb_entity: null # Change if needed
+wandb_entity: 'patrickhowe22' # Change if needed
 wandb_run_name: ft_ade_64e_multimae-b_rgb
-log_images_wandb: True
+log_images_wandb: False
 log_images_freq: 5
 output_dir: 'output/finetune/semseg/ade/ft_ade_64e_multimae-b_rgb' # Change if needed

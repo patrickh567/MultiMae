@@ -22,8 +22,8 @@ data_path: '/path/to/dataset' # Change me
 eval_data_path: '/path/to/eval_dataset' # Change me
 
 # Wandb logging
-log_wandb: False # Set to True to activate logging to Weights & Biases
+log_wandb: True # Set to True to activate logging to Weights & Biases
 wandb_project: 'multimae-finetune-cls'
-wandb_entity: null # Change if needed
+wandb_entity: patrickhowe22 # Change if needed
 wandb_run_name: ft_in1k_100e_multimae-b
 output_dir: 'output/finetune/cls/ft_in1k_100e_multimae-b'

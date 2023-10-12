@@ -20,7 +20,7 @@ try:
     from albumentations.pytorch import ToTensorV2
 except:
     print('albumentations not installed')
-# import cv2
+import cv2
 import torch.nn.functional as F
 
 from utils import (IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD, NYU_MEAN,
@@ -106,16 +106,24 @@ class DataAugmentationForRegression(object):
         # Need to replace rgb key to image
         task_dict['image'] = task_dict.pop('rgb')
         # Convert to np.array
+        #task_dict = {k: cv2.UMat(np.array(v)) for k, v in task_dict.items()}
+        #task_dict = {k: np.float32(np.array(v)) for k, v in task_dict.items()}
         task_dict = {k: np.array(v) for k, v in task_dict.items()}
-
+        #print(self.transform)
+        #print(task_dict['image'].shape)
+        #print(task_dict['image'].dtype)
+        #print(task_dict['image'])
         task_dict = self.transform(**task_dict)
-
+        #print(task_dict['depth'].dtype)
         task_dict['depth'] = (task_dict['depth'].float() - NYU_MEAN)/NYU_STD
+        #task_dict['depth'] = (np.float32(task_dict['depth']) - NYU_MEAN)/NYU_STD
 
         # And then replace it back to rgb
         task_dict['rgb'] = task_dict.pop('image')
 
         task_dict['mask_valid'] = (task_dict['mask_valid'] == 255)[None]
+
+        task_dict = {k: torch.tensor(v) for k, v in task_dict.items()}
 
         for task in task_dict:
             if task in ['depth']:

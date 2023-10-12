@@ -8,7 +8,8 @@ import math
 
 import numpy as np
 import torch
-from torch._six import inf
+#from torch._six import inf
+from torch import inf
 
 
 class NativeScalerWithGradNormCount:

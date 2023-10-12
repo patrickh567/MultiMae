@@ -47,6 +47,6 @@ log_wandb: False # Set to True to log to Weights & Biases
 wandb_project: 'multimae-finetune-depth'
 wandb_entity: null # Change if needed
 wandb_run_name: 'ft_nyu_2000e_multimae-b'
-log_images_wandb: True
+log_images_wandb: False
 log_images_freq: 250
-output_dir: '/output/finetune/depth/ft_nyu_2000e_multimae-b' # Change if needed
+output_dir: 'output/finetune/depth/ft_nyu_2000e_multimae-b' # Change if needed
